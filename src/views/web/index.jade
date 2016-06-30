@@ -1,8 +1,56 @@
 doctype html
-html
-    head
-        title= title
-        link(rel='stylesheet', href='/static/css/home.css')
-        script(type='text/javascript', src='/static/js/home.js')
-    body(class='light-primary-color')
-        h1 Good Luck!
+html(lang='en', ng-app='MyApp')
+  head
+    title Cloudmagic Challenge
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='/static/css/bootstrap.min.css')
+    script(src='/static/js/jquery.min.js')
+    script(src='/static/js/bootstrap.min.js')
+    script(src='/static/js/angular.min.js')
+    script(src='/static/js/fontawesome.js')
+    script(src='/static/js/frontendscript.js')
+    link(rel='stylesheet', href='/static/css/frontend.css')
+  body(style='background-color: #FDEEF4;')
+    .container.maindiv(ng-app='MyApp', ng-controller='displayController')
+      div
+        h2(style='text-align:center;')
+          b  INBOX 
+      .row.col-md-12
+        .mail-portion(ng-hide='showItem', style='width:100%')
+          .mailbox.col-md-12(ng-repeat='data in datas', ng-style='getColor(data)')
+            .col-md-1
+              input(type='checkbox', ng-model='data.clicked')
+            .details(ng-click='data.isRead=true; $parent.showItem = true; $parent.nextData = data;')
+              .col-md-3
+                b {{ data.participants [0] }} , {{ data.participants [1] }}
+              .col-md-3
+                b {{ data.subject }}
+              .col-md-3
+                span.preview-text  {{ data.preview }} 
+              .col-md-1.float-right
+                span.fa-stack(style='-webkit-text-stroke-width: 1px; -webkit-text-stroke-color: orange;', ng-style='getiColor(data)')
+                  i.fa.fa-fw.fa-lg.fa-star.fa-stack-1x
+          button.button-style(ng-click='delete()')
+            p(style='color:white;') DELETE
+        .secondview(ng-if='showItem')
+          .singlemail.col-md-12
+            h2(style='text-align:center;')
+              b Single Message
+            .bottom-margin.top-margin
+              b Participant Member : 
+              |  {{ nextData.participants [0] }} , {{ nextData.participants [1] }}
+            .bottom-margin.top-margin
+              b Subject: 
+              |  {{ nextData.subject }}
+            .bottom-margin.top-margin
+              b Message: 
+              |  {{ nextData.preview }}
+          .col-md-12
+            button.button-style.float-left(ng-click='$parent.showItem = false')
+              p(style='color:white;') BACK
+            .float-right
+              input(type='checkbox', ng-model='nextData.clicked')
+              | Confirm by checking, Yes I want to delete
+              button.button-style(ng-click='delete(); $parent.showItem = false')
+                p(style='color:white;') DELETE MESSAGE

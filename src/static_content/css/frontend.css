@@ -1,0 +1,52 @@
+.maindiv {
+	
+	margin-top:50px;
+	
+}
+
+.mailbox {
+    border-bottom: 2px solid #A02820;
+    background-color:#FFFFE0;
+    padding:20px;
+    cursor: pointer;
+
+}
+
+.preview-text {
+	
+    display:inline-block;
+    width:180px;
+    white-space: nowrap;
+    overflow:hidden !important;
+    text-overflow: ellipsis;
+
+
+}
+
+.singlemail {
+    background-color:white;
+}
+
+.float-right {
+	float:right;
+}
+
+.float-left {
+	float:left;
+}
+
+.button-style {
+	margin-top:40px;
+	border-radius: 12px;
+	width : 120px;
+	height : 60px;
+	background-color:blue;
+}
+
+.bottom-margin {
+	margin-bottom:20px;
+}
+
+.top-margin {
+	margin-top:20px;
+}
